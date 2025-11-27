@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Pragathi SA</title>
-    <meta name="description" content="Software Engineer specializing in AI/ML, System Design, and Growth Engineering. Portfolio: CacheFlow, DocsLite 95, Radix, and more.">
+    <title>Pragathi</title>
+    <meta name="description" content="Software Engineer specializing in AI/ML, System Design, and Growth Engineering. Portfolio: AutoFix Agent, CacheFlow, DocsLite 95, and more.">
     
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pragathii2611.github.io/">
     <meta property="og:title" content="Pragathi SA | Portfolio">
-    <meta property="og:description" content="Bridging algorithmic complexity and product utility. View 10+ engineering projects.">
+    <meta property="og:description" content="Bridging algorithmic complexity and product utility. View 10+ engineering projects including Autonomous AI Agents.">
     <meta property="og:image" content="og-image.png">
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%2322c55e%22/></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -125,34 +126,40 @@
         // --- DATA ---
         const PORTFOLIO_DATA = {
             name: "Pragathi SA",
-            role: "Software Engineer", 
+            role: "AI & Software Engineer", 
             subRole: "CS Undergraduate @ UOL", 
             resumeLink: "resume.pdf", 
-            about: "I bridge the gap between algorithmic complexity and product utility. A Computer Science undergraduate with a rigorous foundation in AI/ML, currently engineering scalable web systems and optimizing B2B growth funnels.",
+            about: "I bridge the gap between algorithmic complexity and product utility. A Computer Science undergraduate with a rigorous foundation in AI/ML, currently engineering autonomous agents and optimizing B2B growth funnels.",
             socials: {
                 email: "sateesha001@mymail.sim.edu.sg",
                 linkedin: "https://www.linkedin.com/in/pragathi-sa-b455b831b/",
                 github: "https://github.com/pragathii2611"
             },
             skills: [
-                // Frontend
-                "React.js & Next.js", "TypeScript",  "JavaScript (ES6+)", "Tailwind CSS", "Vite", "Redux",
-                // Backend & Systems
-                "Node.js", "Python", "System Design", "REST & GraphQL", "WebSockets",
-                // AI & Data
-                "Data Structures & Algo",
+                // Highlighted New Skills
+                "LangGraph & Agents", "Docker & Containers", "TypeScript", "Node.js", "HTML5", "Tailwind","Python",
+                // Core
+                "React.js & Next.js", "Python (AI/ML)", "System Design", "PostgreSQL", "RESTful APIs",
                 // Tools
-                "Git/GitHub", "CI/CD Pipelines", "Jest/Testing", "A/B Testing"
+                "Git/GitHub Actions", "CI/CD Pipelines", "AWS/Railway", "REST & GraphQL", "Ngrok", "Jest"
             ],
             experience: [
                 { 
                     company: "GlassRoom", 
                     role: "Growth Engineering & Analytics", 
-                    
+                   
                     desc: "Architected a segmented outreach strategy driving a 35-40% increase in organic impressions. Engineered tracking frameworks that boosted engagement metrics by 180% via content optimization." 
                 }
             ],
             projects: [
+                {
+                    title: "AutoFix Agent",
+                    tag: "AI Infrastructure",
+                    color: "bg-blue-500",
+                    desc: "Self-healing CI/CD agent. Intercepts GitHub build failures, spins up ephemeral Docker sandboxes to reproduce bugs, and uses a ReAct agentic loop to autonomously patch code and open Pull Requests.",
+                    stack: ["LangGraph", "Docker", "Node.js", "Llama 3"],
+                    link: "https://github.com/pragathii2611/autofix-demo/pull/1" 
+                },
                 {
                     title: "RouteGen",
                     tag: "Algorithms",
@@ -201,7 +208,6 @@
                     stack: ["JavaScript", "Chart.js", "REST APIs"],
                     link: "https://pragathii2611.github.io/Altalyze/"
                 },
-                
                 {
                     title: "Internet History of India",
                     tag: "Academic",
@@ -210,8 +216,6 @@
                     stack: ["HTML/CSS", "Digital Humanities", "Visualization"],
                     link: "https://india-kzeh.onrender.com" 
                 },
-                 
-                
                 {
                     title: "Drawing App",
                     tag: "Graphics",
@@ -228,11 +232,32 @@
                     stack: ["Data Analytics", "Growth Eng", "Optimization"],
                     link: "report.pdf"
                 }
-                
             ]
         };
 
         // --- COMPONENTS ---
+
+       
+        const ViewCounter = () => {
+            const [views, setViews] = useState(null);
+
+            useEffect(() => {
+                
+                fetch('https://api.counterapi.dev/v1/pragathii2611/portfolio/up')
+                    .then(res => res.json())
+                    .then(data => setViews(data.count))
+                    .catch(err => console.log("Counter Error:", err));
+            }, []);
+
+            if (views === null) return <span className="text-[10px] font-mono opacity-50">INIT_COUNTER...</span>;
+
+            return (
+                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest opacity-60 mt-4 border-t-2 border-black/10 pt-4 w-full justify-center md:justify-start">
+                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                    <span>Terminal Accesses: {views}</span>
+                </div>
+            );
+        };
 
         const CustomCursor = () => {
             const dotRef = useRef(null);
@@ -382,7 +407,7 @@
             }
             // 5. Projects
             if (lower.includes('project') || lower.includes('work')) {
-                return "PROJECT_INDEX: 10+ Systems Deployed. Highlights: CacheFlow (Simulator), GlassRoom (Analytics), and DocsLite (Real-time).";
+                return "PROJECT_INDEX: 10+ Systems Deployed. Highlights: AutoFix Agent (AI/DevOps), CacheFlow (Simulator), and DocsLite (Real-time).";
             }
             
             // Default Fallback
@@ -530,7 +555,7 @@
                             <NavButton label="Comms Link" icon="message-square" active={activeSection === 'contact'} onClick={() => handleScroll('contact')} />
                         </nav>
 
-                        <div className="p-6 border-t-2 border-black bg-white">
+                        <div className="p-6 border-t-2 border-black bg-white flex flex-col items-center">
                             <a 
                                 href={PORTFOLIO_DATA.resumeLink} 
                                 target="_blank"
@@ -544,6 +569,9 @@
                                 <a href={PORTFOLIO_DATA.socials.linkedin} target="_blank" aria-label="LinkedIn Profile" className="p-3 border-2 border-black hover:bg-blue-600 hover:text-white transition-colors hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"><Icon name="linkedin" className="w-5 h-5" /></a>
                                 <a href={`mailto:${PORTFOLIO_DATA.socials.email}`} aria-label="Send Email" className="p-3 border-2 border-black hover:bg-red-500 hover:text-white transition-colors hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"><Icon name="mail" className="w-5 h-5" /></a>
                             </div>
+                            
+                            {/* VIEW COUNTER ADDED HERE */}
+                            <ViewCounter />
                         </div>
                     </aside>
 
